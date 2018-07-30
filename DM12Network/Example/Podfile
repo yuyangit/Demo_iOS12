@@ -1,0 +1,8 @@
+use_frameworks!
+platform :ios, '12.0'
+
+inhibit_all_warnings!
+
+target 'DM12Network_Example' do
+  pod 'DM12Network/Message', :path => '../'
+end

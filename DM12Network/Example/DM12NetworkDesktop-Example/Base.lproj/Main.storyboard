@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="FHp-Jo-0F2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14306.4"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="DM12NetworkFramework" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="DM12NetworkFramework" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="About DM12NetworkFramework" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Services" id="NMo-om-nkz">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Hide DM12NetworkFramework" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="Kd2-mp-pUS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                                        <menuItem title="Quit DM12NetworkFramework" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-965" y="-705"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="R2V-B0-nI4">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="消息" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="247"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                    </connections>
+                </windowController>
+                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="299" y="-394"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="pBY-uy-qKe">
+            <objects>
+                <windowController id="EIg-oi-dhD" sceneMemberID="viewController">
+                    <window key="window" title="直播" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Xus-ui-TjP">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="EIg-oi-dhD" id="OX2-6P-RJB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="nA5-Aq-SXZ" kind="relationship" relationship="window.shadowedContentViewController" id="lcX-eW-AXc"/>
+                    </connections>
+                </windowController>
+                <customObject id="2eg-MC-2hT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-318" y="82"/>
+        </scene>
+        <!--直播-->
+        <scene sceneID="dpd-ia-17v">
+            <objects>
+                <viewController title="直播" id="nA5-Aq-SXZ" customClass="DM12LiveStreamListenerViewController" sceneMemberID="viewController">
+                    <view key="view" id="Ohj-hD-Vt6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mqV-f3-Gz5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="qNs-Ha-FN4"/>
+                                    <constraint firstAttribute="width" constant="375" id="tLT-CV-p4K"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="1PN-sx-SFs"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mqV-f3-Gz5" secondAttribute="trailing" id="DzL-kv-JWo"/>
+                            <constraint firstAttribute="bottom" secondItem="mqV-f3-Gz5" secondAttribute="bottom" id="Wgd-oZ-8dA"/>
+                            <constraint firstItem="mqV-f3-Gz5" firstAttribute="top" secondItem="Ohj-hD-Vt6" secondAttribute="top" id="fug-k7-o4o"/>
+                            <constraint firstItem="mqV-f3-Gz5" firstAttribute="leading" secondItem="Ohj-hD-Vt6" secondAttribute="leading" id="jNB-8g-kut"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="mqV-f3-Gz5" id="T2B-RD-czb"/>
+                    </connections>
+                </viewController>
+                <customObject id="cv5-pn-GhY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-318" y="827"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="hIz-AP-VOD">
+            <objects>
+                <viewController title="消息" id="XfG-lQ-9wD" customClass="DM12MessageListenerViewController" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="441" height="500"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ1-35-nbn">
+                                <rect key="frame" x="20" y="304" width="401" height="148"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="7Kg-ty-Rj1">
+                                    <rect key="frame" x="0.0" y="0.0" width="401" height="148"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="T5p-yz-BdR">
+                                            <rect key="frame" x="0.0" y="0.0" width="401" height="148"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="401" height="148"/>
+                                            <size key="maxSize" width="500" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="nBF-c7-mSn"/>
+                                </constraints>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ruA-E3-DHo">
+                                    <rect key="frame" x="385" y="0.0" width="16" height="148"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ic-jH-4IB">
+                                <rect key="frame" x="18" y="251" width="405" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="RAd-gd-rlN"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="请输入要绑定的IP地址:" id="NWY-0m-i4N">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zsk-qY-pdO">
+                                <rect key="frame" x="18" y="216" width="42" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="6jr-dd-1YS"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="eKF-Cc-ksc"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="IP地址" id="TbF-tI-tDm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-JJ-IFa">
+                                <rect key="frame" x="68" y="214" width="353" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="idj-T9-j4S">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fk3-km-C8a">
+                                <rect key="frame" x="18" y="184" width="31" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="KyF-OR-355"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="su2-Wl-Xbl"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="端口" id="4hA-8P-oSl">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n5n-bA-snz">
+                                <rect key="frame" x="68" y="182" width="353" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="dKj-2D-3dF"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="uX0-3M-GQG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="qDI-1q-ufs">
+                                <rect key="frame" x="20" y="150" width="5" height="5"/>
+                                <view key="contentView" id="1yB-yf-TcB">
+                                    <rect key="frame" x="0.0" y="0.0" width="5" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="5" id="6oU-Qr-I78"/>
+                                    <constraint firstAttribute="height" constant="5" id="Bjl-2r-aN4"/>
+                                </constraints>
+                                <color key="fillColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ME0-VP-vQf">
+                                <rect key="frame" x="33" y="144" width="57" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="j0A-gZ-618"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="绑定状态" id="onF-mI-prW">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-9G-Jjr">
+                                <rect key="frame" x="334" y="135" width="93" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="tQF-gD-2eI"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="绑定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MIq-Gc-tkv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="bindButtonAction:" target="XfG-lQ-9wD" id="OzH-wQ-Uuq"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iyc-Vf-SEy">
+                                <rect key="frame" x="18" y="462" width="405" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="RTg-FW-XOK"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="打印信息:" id="Aad-g4-oeb">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box hidden="YES" boxType="custom" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-Wb-cVt">
+                                <rect key="frame" x="20" y="95" width="5" height="5"/>
+                                <view key="contentView" id="8FO-WU-Mjz">
+                                    <rect key="frame" x="1" y="1" width="3" height="3"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="5" id="5eD-WQ-OQX"/>
+                                    <constraint firstAttribute="height" constant="5" id="OaT-Ya-CFt"/>
+                                </constraints>
+                                <color key="fillColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0g3-TH-gMl">
+                                <rect key="frame" x="33" y="89" width="57" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="Y6q-ZH-Gu5"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="连接状态" id="iF6-WZ-3tQ">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qmZ-wy-2WW">
+                                <rect key="frame" x="334" y="80" width="93" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Kwd-q1-aZT"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="断开连接" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fRt-Hv-U0K">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="connectionButtonAction:" target="XfG-lQ-9wD" id="y3f-eL-sjY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="iyc-Vf-SEy" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="07R-BA-ZrU"/>
+                            <constraint firstItem="n5n-bA-snz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fk3-km-C8a" secondAttribute="trailing" constant="8" symbolic="YES" id="0oa-X8-pQi"/>
+                            <constraint firstItem="qDI-1q-ufs" firstAttribute="top" secondItem="Fk3-km-C8a" secondAttribute="bottom" constant="29" id="1vb-FA-MI9"/>
+                            <constraint firstItem="lJ1-35-nbn" firstAttribute="top" secondItem="iyc-Vf-SEy" secondAttribute="bottom" constant="10" id="1z4-ud-YXW"/>
+                            <constraint firstItem="qDI-1q-ufs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="33b-jW-nvz"/>
+                            <constraint firstItem="Zsk-qY-pdO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="4Je-dj-X9e"/>
+                            <constraint firstItem="ME0-VP-vQf" firstAttribute="centerY" secondItem="qDI-1q-ufs" secondAttribute="centerY" id="508-9e-g9Y"/>
+                            <constraint firstItem="6X2-9G-Jjr" firstAttribute="trailing" secondItem="n5n-bA-snz" secondAttribute="trailing" id="5dV-kh-3A2"/>
+                            <constraint firstItem="fwp-JJ-IFa" firstAttribute="centerY" secondItem="Zsk-qY-pdO" secondAttribute="centerY" id="690-1l-29e"/>
+                            <constraint firstItem="Fk3-km-C8a" firstAttribute="top" secondItem="Zsk-qY-pdO" secondAttribute="bottom" constant="14" id="8wh-tG-h2a"/>
+                            <constraint firstItem="fwp-JJ-IFa" firstAttribute="leading" secondItem="Zsk-qY-pdO" secondAttribute="trailing" constant="10" id="Bn8-Zd-xXn"/>
+                            <constraint firstItem="ME0-VP-vQf" firstAttribute="leading" secondItem="qDI-1q-ufs" secondAttribute="trailing" constant="10" id="F27-is-beH"/>
+                            <constraint firstItem="0g3-TH-gMl" firstAttribute="leading" secondItem="d9a-Wb-cVt" secondAttribute="trailing" constant="10" id="FVM-vO-Vtt"/>
+                            <constraint firstAttribute="trailing" secondItem="iyc-Vf-SEy" secondAttribute="trailing" constant="20" id="Fsi-Kr-QYA"/>
+                            <constraint firstItem="qmZ-wy-2WW" firstAttribute="centerY" secondItem="0g3-TH-gMl" secondAttribute="centerY" id="HbW-Yl-VCV"/>
+                            <constraint firstAttribute="trailing" secondItem="fwp-JJ-IFa" secondAttribute="trailing" constant="20" id="IbB-aX-a4w"/>
+                            <constraint firstItem="qmZ-wy-2WW" firstAttribute="trailing" secondItem="6X2-9G-Jjr" secondAttribute="trailing" id="K9D-4l-i0L"/>
+                            <constraint firstItem="n5n-bA-snz" firstAttribute="centerY" secondItem="Fk3-km-C8a" secondAttribute="centerY" id="NgU-Jg-fif"/>
+                            <constraint firstItem="Zsk-qY-pdO" firstAttribute="top" secondItem="8Ic-jH-4IB" secondAttribute="bottom" constant="17" id="PcA-lD-ewH"/>
+                            <constraint firstItem="8Ic-jH-4IB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QkT-NM-aEc"/>
+                            <constraint firstItem="0g3-TH-gMl" firstAttribute="centerY" secondItem="d9a-Wb-cVt" secondAttribute="centerY" id="UNU-VZ-U5A"/>
+                            <constraint firstItem="6X2-9G-Jjr" firstAttribute="centerY" secondItem="ME0-VP-vQf" secondAttribute="centerY" id="Ul8-MZ-tVW"/>
+                            <constraint firstItem="8Ic-jH-4IB" firstAttribute="top" secondItem="T5p-yz-BdR" secondAttribute="bottom" constant="35" id="el9-lP-ADG"/>
+                            <constraint firstItem="6X2-9G-Jjr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ME0-VP-vQf" secondAttribute="trailing" id="hBc-j7-HPV"/>
+                            <constraint firstAttribute="trailing" secondItem="lJ1-35-nbn" secondAttribute="trailing" constant="20" id="hcd-FI-Fre"/>
+                            <constraint firstItem="n5n-bA-snz" firstAttribute="leading" secondItem="fwp-JJ-IFa" secondAttribute="leading" id="kB7-U1-pJ7"/>
+                            <constraint firstItem="lJ1-35-nbn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="lvc-kt-xER"/>
+                            <constraint firstItem="qmZ-wy-2WW" firstAttribute="leading" secondItem="6X2-9G-Jjr" secondAttribute="leading" id="ndD-jE-DPo"/>
+                            <constraint firstItem="d9a-Wb-cVt" firstAttribute="top" secondItem="qDI-1q-ufs" secondAttribute="bottom" constant="50" id="r9Y-BX-J8e"/>
+                            <constraint firstItem="Fk3-km-C8a" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="rQD-qS-cm0"/>
+                            <constraint firstItem="n5n-bA-snz" firstAttribute="trailing" secondItem="fwp-JJ-IFa" secondAttribute="trailing" id="tlJ-L1-9lW"/>
+                            <constraint firstItem="iyc-Vf-SEy" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wJp-84-5yv"/>
+                            <constraint firstItem="d9a-Wb-cVt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="xO9-DU-Zva"/>
+                            <constraint firstItem="qmZ-wy-2WW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0g3-TH-gMl" secondAttribute="trailing" id="zCw-8M-UCn"/>
+                            <constraint firstAttribute="trailing" secondItem="8Ic-jH-4IB" secondAttribute="trailing" constant="20" id="zVp-kQ-GBe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bindButton" destination="6X2-9G-Jjr" id="hPZ-3a-k6x"/>
+                        <outlet property="connectionButton" destination="qmZ-wy-2WW" id="HtQ-rS-3l6"/>
+                        <outlet property="connectionStatusBox" destination="d9a-Wb-cVt" id="CMY-rH-DFS"/>
+                        <outlet property="connectionStatusLabel" destination="0g3-TH-gMl" id="J81-r1-BKE"/>
+                        <outlet property="ipAddressTextField" destination="fwp-JJ-IFa" id="IU6-wA-pD3"/>
+                        <outlet property="listenerStatusBox" destination="qDI-1q-ufs" id="x27-Dd-hXi"/>
+                        <outlet property="listenerStatusLabel" destination="ME0-VP-vQf" id="JdU-cp-SPN"/>
+                        <outlet property="portTextField" destination="n5n-bA-snz" id="7BQ-7E-146"/>
+                        <outlet property="receiveTextView" destination="T5p-yz-BdR" id="xLS-6x-tAD"/>
+                    </connections>
+                </viewController>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="300" y="171"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="kTX-uC-mgw">
+            <objects>
+                <windowController id="FHp-Jo-0F2" sceneMemberID="viewController">
+                    <window key="window" title="开始" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="AgR-3n-l9o">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="FHp-Jo-0F2" id="u9U-ra-wN9"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="s5T-EW-m4m" kind="relationship" relationship="window.shadowedContentViewController" id="RUw-8J-Dou"/>
+                    </connections>
+                </windowController>
+                <customObject id="kGB-Fa-7NZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-950" y="-397"/>
+        </scene>
+        <!--Home Listener View Controller-->
+        <scene sceneID="cU3-Ke-ipc">
+            <objects>
+                <viewController id="s5T-EW-m4m" customClass="DM12HomeListenerViewController" sceneMemberID="viewController">
+                    <view key="view" id="VFH-e4-ZL6">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-cS-kg8">
+                                <rect key="frame" x="55" y="118" width="67" height="32"/>
+                                <buttonCell key="cell" type="push" title="消息" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jUF-S1-dZb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="B8D-0N-5wS" kind="show" id="EE0-Os-gub"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DFi-Np-nAy">
+                                <rect key="frame" x="334" y="118" width="67" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="s7y-WC-8ss"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="直播" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EzU-YW-Mht">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="EIg-oi-dhD" kind="show" id="Nuy-f4-xPc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hQT-cS-kg8" firstAttribute="leading" secondItem="VFH-e4-ZL6" secondAttribute="leading" constant="61" id="4Hd-jZ-gNK"/>
+                            <constraint firstAttribute="trailing" secondItem="DFi-Np-nAy" secondAttribute="trailing" constant="85" id="82r-sg-XyK"/>
+                            <constraint firstItem="DFi-Np-nAy" firstAttribute="centerY" secondItem="VFH-e4-ZL6" secondAttribute="centerY" id="8AX-Oo-3Hj"/>
+                            <constraint firstItem="hQT-cS-kg8" firstAttribute="centerY" secondItem="VFH-e4-ZL6" secondAttribute="centerY" id="EIp-aI-fCh"/>
+                            <constraint firstItem="DFi-Np-nAy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hQT-cS-kg8" secondAttribute="trailing" constant="12" symbolic="YES" id="FNV-Dd-wXR"/>
+                            <constraint firstItem="hQT-cS-kg8" firstAttribute="baseline" secondItem="DFi-Np-nAy" secondAttribute="baseline" id="pBW-wd-69l"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="NjJ-T5-NwQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-318" y="-406"/>
+        </scene>
+    </scenes>
+</document>
