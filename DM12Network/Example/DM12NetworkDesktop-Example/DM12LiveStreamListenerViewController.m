@@ -27,7 +27,9 @@
 
 @property ( nonatomic, strong ) dispatch_queue_t listenerQueue;
 
-@property ( nonatomic, assign ) NSInteger dataTotalSize;
+@property ( nonatomic, assign ) NSInteger receivedSize;
+
+@property ( nonatomic, strong ) NSMutableDictionary *dataInfo;
 
 @end
 
@@ -42,12 +44,15 @@
     nw_parameters_t parameters = NULL;
     
     nw_parameters_configure_protocol_block_t configure_tls = NW_PARAMETERS_DISABLE_PROTOCOL;
+    
     parameters = nw_parameters_create_secure_udp(configure_tls, NW_PARAMETERS_DEFAULT_CONFIGURATION);
     nw_protocol_stack_t protocol_stack = nw_parameters_copy_default_protocol_stack(parameters);
     nw_protocol_options_t ip_options = nw_protocol_stack_copy_internet_protocol(protocol_stack);
     nw_ip_options_set_version(ip_options, nw_ip_version_4);
-    nw_endpoint_t local_endpoint = nw_endpoint_create_host("192.168.31.237", "8882");
+    nw_endpoint_t local_endpoint = nw_endpoint_create_host("10.1.6.162", "8882");
     nw_parameters_set_local_endpoint(parameters, local_endpoint);
+    nw_parameters_set_fast_open_enabled(parameters, true);
+    nw_parameters_set_include_peer_to_peer(parameters, true);
     self.listener = nw_listener_create(parameters);
     nw_listener_set_queue(self.listener, self.listenerQueue);
     nw_listener_set_state_changed_handler(self.listener, ^(nw_listener_state_t state, nw_error_t error) {
@@ -89,9 +94,19 @@
     return _data;
 }
 
+- (NSMutableDictionary *)dataInfo {
+    
+    if (_dataInfo == nil) {
+        _dataInfo = [NSMutableDictionary dictionary];
+    }
+    
+    return _dataInfo;
+}
+
 - (void)receive_loop:(nw_connection_t)connection {
-   
-    nw_connection_receive(connection, 1, UINT32_MAX, ^(dispatch_data_t content, nw_content_context_t context, bool is_complete, nw_error_t receive_error) {
+    
+    nw_connection_receive_message(connection, ^(dispatch_data_t  _Nullable content, nw_content_context_t  _Nullable context, bool is_complete, nw_error_t  _Nullable receive_error) {
+        
         dispatch_block_t schedule_next_receive = ^{
             if (
                 is_complete &&
@@ -117,12 +132,32 @@
                                                    userInfo:nil];
                 }
                 if (data) {
-                    NSImage *image = [[NSImage alloc] initWithData:data];
-//                    self.imageView.image = image;
-                    self.imageView.layer = [[CALayer alloc] init];
-                    self.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
-                    self.imageView.layer.contents = image;
-                    self.imageView.wantsLayer = YES;
+                    
+                    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    
+                    if ([string isEqualToString:@"udp.frame.start"]) {
+                        self.dataInfo = [NSMutableDictionary dictionary];
+                        self.receivedSize = 0;
+                        self.data = [NSMutableData data];
+                        
+                        return true;
+                    }
+                    else if ([string isEqualToString:@"udp.frame.end"]) {
+                        
+                        NSImage *image = [[NSImage alloc] initWithData:self.data];
+                        self.imageView.layer = [[CALayer alloc] init];
+                        self.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
+                        self.imageView.layer.contents = image;
+                        self.imageView.wantsLayer = YES;
+                        
+                        self.dataInfo = [NSMutableDictionary dictionary];
+                        self.receivedSize = 0;
+                        self.data = [NSMutableData data];
+                        
+                        return true;
+                    }
+                    
+                    [self.data appendData:data];
                 }
                 
                 return true;

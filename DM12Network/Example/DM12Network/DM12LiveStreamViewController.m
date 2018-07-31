@@ -53,6 +53,8 @@ NSStreamDelegate
 
 @property ( nonatomic, strong ) dispatch_queue_t connectionQueue;
 
+@property ( nonatomic, assign ) BOOL send;
+
 @end
 
 @implementation DM12LiveStreamViewController
@@ -87,7 +89,7 @@ NSStreamDelegate
                 self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
                 dispatch_queue_t queue = dispatch_queue_create("myQueue",DISPATCH_QUEUE_CONCURRENT);
                 [self.videoDataOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA] forKey:(NSString*)kCVPixelBufferPixelFormatTypeKey]];
-
+                
                 // 实现其代理方法 并实时得到数据
                 [self.videoDataOutput setSampleBufferDelegate:self queue:queue];
                 if ([self.session canAddOutput:self.videoDataOutput]) {
@@ -126,8 +128,8 @@ NSStreamDelegate
     [self setupVideoInputOutput];
     self.dataQueue = dispatch_queue_create("com.echoServer.data.queue", DISPATCH_QUEUE_SERIAL);
     self.connectionQueue = dispatch_queue_create("com.echoServer.connection.queue", DISPATCH_QUEUE_SERIAL);
-
-    nw_endpoint_t endpoint = nw_endpoint_create_host("", "8882");
+    
+    nw_endpoint_t endpoint = nw_endpoint_create_host("10.1.6.162", "8882");
     nw_parameters_t parameters = NULL;
     nw_parameters_configure_protocol_block_t configure_tls = NW_PARAMETERS_DISABLE_PROTOCOL;
     parameters = nw_parameters_create_secure_udp(configure_tls, NW_PARAMETERS_DEFAULT_CONFIGURATION);
@@ -135,12 +137,13 @@ NSStreamDelegate
     nw_protocol_options_t ip_options = nw_protocol_stack_copy_internet_protocol(protocol_stack);
     nw_ip_options_set_version(ip_options, nw_ip_version_4);
     nw_parameters_set_fast_open_enabled(parameters, true);
+    nw_parameters_set_include_peer_to_peer(parameters, true);
     self.connection = nw_connection_create(endpoint, parameters);
     nw_connection_set_queue(self.connection, self.connectionQueue);
     nw_connection_set_state_changed_handler(self.connection, ^(nw_connection_state_t state, nw_error_t  _Nullable error) {
         
     });
-
+    
     nw_connection_start(self.connection);
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
@@ -169,43 +172,42 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
     
     @autoreleasepool {
-//        __block CGImageRef imageRef = [self dataFromCMSampleBufferRef:sampleBuffer];
+        //        __block CGImageRef imageRef = [self dataFromCMSampleBufferRef:sampleBuffer];
         __block UIImage *image = [self imageFromCMSampleBufferRef:sampleBuffer];
         __block NSData *imageData = UIImageJPEGRepresentation(image, 0.1);
-        [self sendWithData:imageData];
+        //        [self sendWithData:imageData];
         
         // 帧开始
-//        NSData *startData = [[NSString stringWithFormat:@"udp.frame.start.%@", @(imageData.length)] dataUsingEncoding:NSUTF8StringEncoding];
-//        [self sendWithData:startData];
-//        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-//            BOOL isEnd = NO;
-//            NSInteger readSize = 0;
-//            NSInteger fileSie = imageData.length;
-//            NSInteger sendSize = 2019; // udp传输默认大小
-//            NSInteger page = 0;
-//            while (!isEnd) {
-//                NSData *data = nil;
-//                NSInteger subleng = fileSie - readSize;
-//                if (subleng < sendSize) {
-//                    isEnd = YES;
-//                    data = [imageData subdataWithRange:NSMakeRange(readSize, subleng)];
-//                }
-//                else
-//                {
-//                    data = [imageData subdataWithRange:NSMakeRange(readSize, sendSize)];
-//                    readSize += sendSize;
-//                }
-//
-//                if (data) {
-//                    data = [[[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength] stringByAppendingString:[NSString stringWithFormat:@".%@", @(page)]] dataUsingEncoding:NSUTF8StringEncoding];
-//
-//                    [self sendWithData:data];
-//                }
-//            }
-//        });
-//        //帧结束
-//        NSData *endData = [@"udp.frame.end" dataUsingEncoding:NSUTF8StringEncoding];
-//        [self sendWithData:endData];
+        //        nw_connection_batch(self.connection, ^{
+        NSData *startData = [@"udp.frame.start" dataUsingEncoding:NSUTF8StringEncoding];
+        [self sendWithData:startData];
+        
+        BOOL isEnd = NO;
+        NSUInteger readSize = 0;
+        NSUInteger fileSize = imageData.length;
+        NSUInteger sendSize = 1000; // udp传输大小
+        while (!isEnd) {
+            NSData *data = nil;
+            NSInteger subleng = fileSize - readSize;
+            if (subleng < sendSize) {
+                isEnd = YES;
+                data = [imageData subdataWithRange:NSMakeRange(readSize, subleng)];
+            }
+            else
+            {
+                data = [imageData subdataWithRange:NSMakeRange(readSize, sendSize)];
+                readSize += sendSize;
+            }
+            if (data) {
+                [self sendWithData:data];
+            }
+        }
+        
+        NSData *endData = [@"udp.frame.end" dataUsingEncoding:NSUTF8StringEncoding];
+        [self sendWithData:endData];
+        
+        //        });
+        //        //帧结束
     }
 }
 
@@ -224,7 +226,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         else {
         }
     });
-
+    
 }
 
 - (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize {
@@ -265,8 +267,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     /* CVBufferRelease(imageBuffer); */  // do not call this!
     
-    UIImage *image = [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationRight];
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.width*0.05, image.size.height*0.05)];
+    UIImage *image = [UIImage imageWithCGImage:newImage scale:0.5 orientation:UIImageOrientationRight];
+    CGFloat alpha = 0.2;
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.width*alpha, image.size.height*alpha)];
     CGImageRelease(newImage);
     
     return image;
