@@ -24,6 +24,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>IntentIntent</string>
 		<string>OrderSoupIntent</string>
 		<string>com.example.apple-samplecode.SoupChef.viewMenu</string>
 	</array>
